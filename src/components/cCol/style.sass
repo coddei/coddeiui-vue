@@ -1,28 +1,43 @@
+// width variable
+$width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8: 66.66%, 9: 75%, 10: 83.33%, 11: 91.66%, 12: 100%)
+
 .c-col
     position: relative
     width: 100%
 
-    &--cols-1
-        width: 8.33%
-    &--cols-2
-        width: 16.66%
-    &--cols-3
-        width: 25%
-    &--cols-4
-        width: 33.33%
-    &--cols-5
-        width: 41.66%
-    &--cols-6
-        width: 50%
-    &--cols-7
-        width: 58.33%
-    &--cols-8
-        width: 66.66%
-    &--cols-9
-        width: 75%
-    &--cols-10
-        width: 83.33%
-    &--cols-11
-        width: 91.66%
-    &--cols-12
-        width: 100%
+    @each $s, $w in $width
+        &--col-#{$s}
+            width: $w
+
+    @each $s, $w in $width
+        &--offset-#{$s}
+            width: $w
+
+    @each $s, $w in $width
+        &--col-#{$s}
+            width: $w
+
+    @media (max-width: 600px) // phone
+        @each $s, $w in $width
+            &--col-xs-#{$s}
+                width: $w
+
+    @media (max-width: 960px) // medium tablet
+        @each $s, $w in $width
+            &--col-sm-#{$s}
+                width: $w
+
+    @media (max-width: 1264px) // large tablet
+        @each $s, $w in $width
+            &--col-md-#{$s}
+                width: $w
+
+    @media (max-width: 1904px) // desktop
+        @each $s, $w in $width
+            &--col-lg-#{$s}
+                width: $w
+
+    @media (min-width: 1904px) // 4k, > 16:9
+        @each $s, $w in $width
+            &--col-xl-#{$s}
+                width: $w
