@@ -1,0 +1,29 @@
+@import '../../styles/utils'
+@import "root"
+
+.c-button
+    border: 0px
+    margin: -var(button-margin)
+    border-radius: -var(button-border-radius)
+    position: relative
+    z-index: 1
+    padding: 0
+    outline: none
+    font-size: .8rem
+    overflow: hidden
+    display: flex
+    align-items: center
+    justify-content: center
+    background: -color(color, 1)
+    color: #fff
+
+    &__content
+        padding: -var(button-padding)
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+
+    &:disabled
+        pointer-events: none
+        opacity: .3
