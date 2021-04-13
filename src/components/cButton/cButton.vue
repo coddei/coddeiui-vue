@@ -15,14 +15,17 @@
 
             // types
             { 'c-button--default': !plain && !flat && !outlined && !gradient && !raised && !text && !shadow && !floating },
-            { 'c-button--plain' : !!plain },
-            { 'c-button--flat' : !!flat },
-            { 'c-button--outlined' : !!outlined },
-            { 'c-button--gradient' : !!gradient },
-            { 'c-button--raised' : !!raised },
-            { 'c-button--text' : !!text },
-            { 'c-button--shadow' : !!shadow },
-            { 'c-button--floating' : !!floating },
+            { 'c-button--plain': !!plain },
+            { 'c-button--flat': !!flat },
+            { 'c-button--outlined': !!outlined },
+            { 'c-button--gradient': !!gradient },
+            { 'c-button--raised': !!raised },
+            { 'c-button--text': !!text },
+            { 'c-button--shadow': !!shadow },
+            { 'c-button--floating': !!floating },
+
+            { 'c-button--rounded': !!rounded },
+            { 'c-button--tile': !!tile },
         ]"
         :style="{
             '--c-color': $data.__color
@@ -58,6 +61,9 @@
         @Prop({ type: Boolean, default: false }) public text!: boolean;
         @Prop({ type: Boolean, default: false }) public shadow!: boolean;
         @Prop({ type: Boolean, default: false }) public floating!: boolean;
+
+        @Prop({ type: Boolean, default: false }) public rounded!: boolean
+        @Prop({ type: Boolean, default: false }) public tile!: boolean
 
         @Prop({ type: String, default: null }) public to!: string | null;
 
