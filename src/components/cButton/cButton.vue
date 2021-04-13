@@ -14,10 +14,10 @@
             { 'c-button--light': !!light },
 
             // types
-            { 'c-button--default': !plain && !flat && !border && !gradient && !raised && !text && !shadow && !floating },
+            { 'c-button--default': !plain && !flat && !outlined && !gradient && !raised && !text && !shadow && !floating },
             { 'c-button--plain' : !!plain },
             { 'c-button--flat' : !!flat },
-            { 'c-button--border' : !!border },
+            { 'c-button--outlined' : !!outlined },
             { 'c-button--gradient' : !!gradient },
             { 'c-button--raised' : !!raised },
             { 'c-button--text' : !!text },
@@ -33,7 +33,7 @@
                 'c-button__content',
             ]"
         >
-            TEST
+            <slot></slot>
         </div>
     </button>
 </template>
@@ -48,14 +48,18 @@
     @Component
     export default class cButton extends cComponent {
 
+        @Prop({ type: Boolean, default: true }) public ripple!: boolean;
+
         @Prop({ type: Boolean, default: false }) public plain!: boolean;
         @Prop({ type: Boolean, default: false }) public flat!: boolean;
-        @Prop({ type: Boolean, default: false }) public border!: boolean;
+        @Prop({ type: Boolean, default: false }) public outlined!: boolean;
         @Prop({ type: Boolean, default: false }) public gradient!: boolean;
         @Prop({ type: Boolean, default: false }) public raised!: boolean;
         @Prop({ type: Boolean, default: false }) public text!: boolean;
         @Prop({ type: Boolean, default: false }) public shadow!: boolean;
         @Prop({ type: Boolean, default: false }) public floating!: boolean;
+
+        @Prop({ type: String, default: null }) public to!: string | null;
 
         mounted() {
             console.log("cButton");
@@ -63,15 +67,24 @@
 
         get listeners() {
             return Object.assign({}, this.$listeners, {
+                click: (event: EventTarget) => {
+                    if (this.to) {
+                        this.$router.push(this.to);
+                    }
+
+                    this.$emit("click", event);
+                },
                 mousedown: (event: EventTarget) => {
-                    if (this.flat) {
-                        createRipple(
-                            event,
-                            !this.active && document.activeElement !== this.$el,
-                            !this.active && document.activeElement !== this.$el
-                        );
-                    } else {
-                        createRipple(event);
+                    if (this.ripple) {
+                        if (this.flat) {
+                            createRipple(
+                                event,
+                                !this.active && document.activeElement !== this.$el,
+                                !this.active && document.activeElement !== this.$el
+                            );
+                        } else {
+                            createRipple(event);
+                        }
                     }
 
                     this.$emit("mousedow", event);
