@@ -1,5 +1,6 @@
 // width variable
 $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8: 66.66%, 9: 75%, 10: 83.33%, 11: 91.66%, 12: 100%)
+$orders: [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
 .c-col
     position: relative
@@ -17,6 +18,10 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
         &--col-#{$s}
             width: $w
 
+    @each $o in $orders
+        &--order-#{$o}
+            order: $o
+
     @media (max-width: 600px) // phone
         @each $s, $w in $width
             &--col-xs-#{$s}
@@ -25,6 +30,10 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
         @each $s, $w in $width
             &--offset-xs-#{$s}
                 margin-left: $w
+
+        @each $o in $orders
+            &--order-xs-#{$o}
+                order: $o
 
     @media (max-width: 960px) // medium tablet
         @each $s, $w in $width
@@ -35,6 +44,10 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
             &--offset-sm-#{$s}
                 margin-left: $w
 
+        @each $o in $orders
+            &--order-sm-#{$o}
+                order: $o
+
     @media (max-width: 1264px) // large tablet
         @each $s, $w in $width
             &--col-md-#{$s}
@@ -43,6 +56,10 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
         @each $s, $w in $width
             &--offset-md-#{$s}
                 margin-left: $w
+
+        @each $o in $orders
+            &--order-md-#{$o}
+                order: $o
 
     @media (max-width: 1904px) // desktop
         @each $s, $w in $width
@@ -53,6 +70,10 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
             &--offset-lg-#{$s}
                 margin-left: $w
 
+        @each $o in $orders
+            &--order-lg-#{$o}
+                order: $o
+
     @media (min-width: 1904px) // 4k, > 16:9
         @each $s, $w in $width
             &--col-xl-#{$s}
@@ -61,3 +82,7 @@ $width: (1: 8.33%, 2: 16.66%, 3: 25%, 4: 33.33%, 5: 41.66%, 6: 50%, 7: 58.33%, 8
         @each $s, $w in $width
             &--offset-xl-#{$s}
                 margin-left: $w
+
+        @each $o in $orders
+            &--order-xl-#{$o}
+                order: $o

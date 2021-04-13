@@ -3,7 +3,9 @@
         :class="[
             'c-col',
             `c-col--col-${cols}`,
-            `c-col--offset-${offset}`,
+
+            offset > 0 ? `c-col--offset-${offset}` : '',
+            isOrderValid(order) ? `c-col--order-${getOrder(order)}` : '',
 
             // responsive | {} with ` doesn't work
             xs > 0 ? `c-col--col-xs-${xs}` : '',
@@ -17,6 +19,12 @@
             offsetMd > 0 ? `c-col--offset-md-${offsetMd}` : '',
             offsetLg > 0 ? `c-col--offset-lg-${offsetLg}` : '',
             offsetXl > 0 ? `c-col--offset-xl-${offsetXl}` : '',
+            // order
+            isOrderValid(orderXs) ? `c-col--order-xs-${getOrder(orderXs)}` : '',
+            isOrderValid(orderSm) ? `c-col--order-sm-${getOrder(orderSm)}` : '',
+            isOrderValid(orderMd) ? `c-col--order-md-${getOrder(orderMd)}` : '',
+            isOrderValid(orderLg) ? `c-col--order-lg-${getOrder(orderLg)}` : '',
+            isOrderValid(orderXl) ? `c-col--order-xl-${getOrder(orderXl)}` : '',
         ]"
     >
         <slot></slot>
@@ -46,5 +54,28 @@
         @Prop({ type: [String, Number], default: "0" }) public offsetMd!: string | number;
         @Prop({ type: [String, Number], default: "0" }) public offsetLg!: string | number;
         @Prop({ type: [String, Number], default: "0" }) public offsetXl!: string | number;
+
+        // order
+        @Prop({ type: [String, Number], default: "0" }) public order!: string | number;
+        @Prop({ type: [String, Number], default: "0" }) public orderXs!: string | number;
+        @Prop({ type: [String, Number], default: "0" }) public orderSm!: string | number;
+        @Prop({ type: [String, Number], default: "0" }) public orderMd!: string | number;
+        @Prop({ type: [String, Number], default: "0" }) public orderLg!: string | number;
+        @Prop({ type: [String, Number], default: "0" }) public orderXl!: string | number;
+
+        private isOrderValid(order: any): boolean {
+            if (order === "first") return true;
+            if (order === "last") return true;
+            if (order >= 1 && order <= 13) return true;
+
+            return false;
+        }
+
+        private getOrder(order: any): number {
+            if (order === "first") return -1;
+            if (order === "last") return 13;
+
+            return order;
+        }
     }
 </script>
