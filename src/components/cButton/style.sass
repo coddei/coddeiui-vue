@@ -165,6 +165,9 @@
     .c-button__content
         transition: all .25s ease
 
+        padding-top: -var(button-raised-content-padding-top)
+        padding-bottom: -var(button-raised-content-padding-bottom)
+
     &.c-button--dark
         &::before
             filter: brightness(2.2)
@@ -192,7 +195,8 @@
         margin-top: -var(button-raised-margin)
 
         .c-button__content
-            padding-bottom: -var(button-raised-padding)
+            padding-top: -var(button-raised-active-padding-top)
+            padding-bottom: -var(button-raised-active-padding-bottom)
 
         &::before
             border-bottom: 0px solid -color(color)
