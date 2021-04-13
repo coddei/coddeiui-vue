@@ -1,5 +1,6 @@
 <template>
     <button
+        v-on="listeners"
         :class="[
             'c-button',
             { 'c-button--active': !!active },
@@ -41,6 +42,9 @@
     import cComponent from "../cComponent/cComponent.vue";
     import { Component, Prop } from 'vue-property-decorator';
 
+    import createRipple from "../../utils/rippleEffect/index";
+
+
     @Component
     export default class cButton extends cComponent {
 
@@ -55,6 +59,24 @@
 
         mounted() {
             console.log("cButton");
+        }
+
+        get listeners() {
+            return Object.assign({}, this.$listeners, {
+                mousedown: (event: EventTarget) => {
+                    if (this.flat) {
+                        createRipple(
+                            event,
+                            !this.active && document.activeElement !== this.$el,
+                            !this.active && document.activeElement !== this.$el
+                        );
+                    } else {
+                        createRipple(event);
+                    }
+
+                    this.$emit("mousedow", event);
+                }
+            })
         }
     }
 </script>
