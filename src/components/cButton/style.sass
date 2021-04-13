@@ -150,15 +150,9 @@
 .c-button--raised
     background: -color(color)
     color: #fff
-    overflow: hidden
-    transform: translate(0)
 
     .c-button__content
         transition: all .25s ease
-
-    &.c-button--icon
-        &.c-button--active
-            height: auto
 
     &::before
         content: ''
@@ -180,10 +174,10 @@
         z-index: -1
 
     &:active
-        transform: translate(0, 2px)
+        margin-top: -var(button-raised-margin)
 
         .c-button__content
-            padding-bottom: -var(button-raised-change)
+            padding-bottom: -var(button-raised-padding)
 
         &::before
             border-bottom: 0px solid -color(color)
