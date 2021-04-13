@@ -70,6 +70,13 @@ function hexToRgb(hex: string) {
 
     var result = regex.exec(hex);
 
+    // handle short hex result
+    if (hex.length < 6 && result) {
+        result[1] = result[1] + result[1];
+        result[2] = result[2] + result[2];
+        result[3] = result[3] + result[3];
+    }
+
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
