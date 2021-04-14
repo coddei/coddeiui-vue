@@ -70,6 +70,13 @@ function hexToRgb(hex: string) {
 
     var result = regex.exec(hex);
 
+    // handle short hex result
+    if (hex.length < 6 && result) {
+        result[1] = result[1] + result[1];
+        result[2] = result[2] + result[2];
+        result[3] = result[3] + result[3];
+    }
+
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
@@ -77,9 +84,31 @@ function hexToRgb(hex: string) {
     } : null;
 }
 
+const setTheme = (theme: string) => {
+    // stop transitions before changing the theme
+    document.body.classList.add("c-stop-all-transitions");
+
+    const windowMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (windowMedia.matches || localStorage.cTheme == "dark" || theme == "dark") {
+        document.body.setAttribute("c-theme", "dark");
+        theme = "dark";
+    } else { // light
+        document.body.removeAttribute("c-theme");
+        theme = "light";
+    }
+
+    localStorage.cTheme = theme;
+
+    document.body.classList.remove("c-stop-all-transitions");
+
+    return theme;
+}
+
 export {
     uiColor,
     defineColor,
     getColor,
-    setStyleVar
+    setStyleVar,
+    setTheme
 }

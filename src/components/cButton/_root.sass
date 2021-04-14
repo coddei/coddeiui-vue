@@ -1,7 +1,24 @@
 .c-button
     --c-color: ""
 
-    --c-button-padding: 10px 14px
+    --c-button-padding-y: 8px
+    --c-button-padding-x: 14px
+    --c-button-padding: var(--c-button-padding-y) var(--c-button-padding-x)
     --c-button-margin: 5px
-    --c-button-border-radius: 10px
+    --c-button-border-radius: 6px
     --c-button-text-color: #fff
+
+    // raised margin is button-margin + 2px
+    --c-button-raised-margin: calc(var(--c-button-margin) + 2px)
+    // raised padding is button-padding-y - 2px
+    --c-button-raised-active-padding-top: calc(var(--c-button-padding-y) - 2px)
+    --c-button-raised-active-padding-bottom: var(--c-button-padding-y)
+    --c-button-raised-content-padding-top: calc(var(--c-button-padding-y) - 2px)
+    --c-button-raised-content-padding-bottom: calc(var(--c-button-padding-y) + 2px)
+
+    --c-button-shadow-opacity: .1
+    --c-button-background-opacity: .1
+    --c-button-background-active-opacity: .2
+
+    --c-button-box-shadow-size: 0px 10px 30px -6px
+    --c-button-box-shadow-opacity: .4
