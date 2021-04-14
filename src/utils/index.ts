@@ -84,9 +84,31 @@ function hexToRgb(hex: string) {
     } : null;
 }
 
+const setTheme = (theme: string) => {
+    // stop transitions before changing the theme
+    document.body.classList.add("c-stop-all-transitions");
+
+    const windowMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (windowMedia.matches || localStorage.cTheme == "dark" || theme == "dark") {
+        document.body.setAttribute("c-theme", "dark");
+        theme = "dark";
+    } else { // light
+        document.body.removeAttribute("c-theme");
+        theme = "light";
+    }
+
+    localStorage.cTheme = theme;
+
+    document.body.classList.remove("c-stop-all-transitions");
+
+    return theme;
+}
+
 export {
     uiColor,
     defineColor,
     getColor,
-    setStyleVar
+    setStyleVar,
+    setTheme
 }

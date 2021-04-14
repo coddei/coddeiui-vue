@@ -1,4 +1,4 @@
-import { defineColor } from "./index";
+import { defineColor, setTheme } from "./index";
 
 
 export interface CoddeiUIColors {
@@ -12,6 +12,7 @@ export interface CoddeiUIColors {
 
 export interface CoddeiUIOptions {
     colors?: CoddeiUIColors
+    theme?: string
 }
 
 const defineColors = (colors: CoddeiUIColors) => {
@@ -25,5 +26,9 @@ const defineColors = (colors: CoddeiUIColors) => {
 export const defineOptions = (options: CoddeiUIOptions) => {
     if (!!options.colors) {
         defineColors(options.colors);
+    }
+
+    if (!!options.theme) {
+        setTheme(options.theme);
     }
 }
